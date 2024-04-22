@@ -1,0 +1,124 @@
+:root {
+    --gray-00: #ffffff;
+    --gray-05: #f5f6f7;
+    --gray-15: #d0d0d5;
+    --gray-75: #3b3b4f;
+    --gray-85: #1b1b32;
+    --gray-90: #0a0a23;
+    --blue-50: #198eee;
+    --error: #a94442;
+    --danger-color: #850000;
+    --danger-background: #ffadad;
+}
+
+*,
+::before,
+::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    padding: 50px 20px;
+    font-family: 'Lato', Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    background-color: var(--gray-85);
+    color: var(--gray-05);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.freecodecamp-logo {
+    width: 265px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px auto;
+    width: 350px;
+    font-family: 'Castoro Titling', cursive;
+}
+
+form {
+    color: var(--gray-15);
+    margin: auto 25px;
+    padding: 15px auto;
+    border: 3px solid var(--gray-00);
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+    background-color: var(--gray-75);
+}
+
+fieldset {
+    border: none;
+    height: 100%;
+    padding: 25px;
+    margin: 10px 20px;
+}
+
+label {
+    display: inline-block;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--blue-50);
+}
+
+input {
+    display: block;
+    font-size: 2.5rem;
+    margin: 20px auto;
+    width: 80%;
+    height: 60px;
+    padding: 6px 10px;
+    color: var(--gray-05);
+    background-color: var(--gray-90);
+    border: 1px solid var(--gray-05);
+}
+
+button {
+    cursor: pointer;
+    margin-top: 15px;
+    width: 80%;
+    background-image: linear-gradient(#fecc4c, #ffac33);
+    padding: 10px 16px;
+    border: 3px solid #ffac33;
+    font-size: 23px;
+}
+
+.output {
+    border: 3px solid var(--gray-05);
+    max-width: 500px;
+    min-height: 55px;
+    margin-top: 25px;
+    padding: 15px;
+    width: 90%;
+    text-align: center;
+    background-color: var(--gray-75);
+    font-size: 2.5rem;
+    overflow-wrap: break-word;
+}
+
+.alert {
+    border: 3px solid var(--danger-color);
+    background-color: var(--danger-background);
+    color: var(--error);
+    font-size: 2rem;
+}
+
+.hidden {
+    display: none;
+}
