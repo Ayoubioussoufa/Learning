@@ -92,9 +92,9 @@ label {
     color: black;
 }
 
-.hidden {
+/* .hidden {
     display: none;
-}
+} */
 
 .palindrome-definition-div {
     width: min(100vw, 450px);
