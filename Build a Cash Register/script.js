@@ -1,105 +1,105 @@
-let button = document.getElementById("purchase-btn");
-let input = document.getElementById("cash");
-let changeDue = document.getElementById("change-due");
-let price = 19.5;
-let cid = [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]];
+// let button = document.getElementById("purchase-btn");
+// let input = document.getElementById("cash");
+// let changeDue = document.getElementById("change-due");
+// let price = 19.5;
+// let cid = [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]];
 
-function checkCashRegister(price, cash, cid) {
-    const currencyUnits = {
-        "PENNY": 0.01,
-        "NICKEL": 0.05,
-        "DIME": 0.1,
-        "QUARTER": 0.25,
-        "ONE": 1,
-        "FIVE": 5,
-        "TEN": 10,
-        "TWENTY": 20,
-        "ONE HUNDRED": 100
-    };
+// function checkCashRegister(price, cash, cid) {
+//     const currencyUnits = {
+//         "PENNY": 0.01,
+//         "NICKEL": 0.05,
+//         "DIME": 0.1,
+//         "QUARTER": 0.25,
+//         "ONE": 1,
+//         "FIVE": 5,
+//         "TEN": 10,
+//         "TWENTY": 20,
+//         "ONE HUNDRED": 100
+//     };
 
-    if (price > cash)
-    {
-        alert("Customer does not have enough money to purchase the item");
-        return 1;
-    }
+//     if (price > cash)
+//     {
+//         alert("Customer does not have enough money to purchase the item");
+//         return 1;
+//     }
 
-    let totalCID = 0;
-    for (let i = 0; i < cid.length; i++) {
-        totalCID += cid[i][1];
-    }
+//     let totalCID = 0;
+//     for (let i = 0; i < cid.length; i++) {
+//         totalCID += cid[i][1];
+//     }
     
-    let changeD = cash - price;
-    let changeArray = [];
+//     let changeD = cash - price;
+//     let changeArray = [];
 
-    if (totalCID < changeD) {
-        return { status: "INSUFFICIENT_FUNDS", change: [] };
-    }
+//     if (totalCID < changeD) {
+//         return { status: "INSUFFICIENT_FUNDS", change: [] };
+//     }
 
-    if (totalCID === changeD) {
-        return { status: "CLOSED", change: cid };
-    }
+//     if (totalCID === changeD) {
+//         return { status: "CLOSED", change: cid };
+//     }
 
-    console.log(totalCID, changeD);
+//     console.log(totalCID, changeD);
 
-    if (!changeD) {
-        changeDue.replaceChildren();
+//     if (!changeD) {
+//         changeDue.replaceChildren();
 
-        let ptag = document.createElement('p');
-        ptag.className = 'result-text';
-        ptag.appendChild(document.createTextNode("No change due - customer paid with exact cash"));
-        changeDue.appendChild(ptag);
-        return 1;
-    }
+//         let ptag = document.createElement('p');
+//         ptag.className = 'result-text';
+//         ptag.appendChild(document.createTextNode("No change due - customer paid with exact cash"));
+//         changeDue.appendChild(ptag);
+//         return 1;
+//     }
 
-    for (let i = cid.length - 1; i >= 0; i--) {
-        let currency = cid[i][0];
-        let unitValue = currencyUnits[currency];
-        let availableAmount = cid[i][1];
+//     for (let i = cid.length - 1; i >= 0; i--) {
+//         let currency = cid[i][0];
+//         let unitValue = currencyUnits[currency];
+//         let availableAmount = cid[i][1];
 
-        if (changeD >= unitValue && availableAmount > 0) {
-            let count = Math.min(Math.floor(changeD / unitValue), availableAmount / unitValue);
-            let amount = count * unitValue;
-            changeArray.push([currency, amount]);
-            changeD -= amount;
-            changeD = Math.round(changeD * 100) / 100; // Round to two decimal places to avoid floating point precision issues
-        }
-    }
+//         if (changeD >= unitValue && availableAmount > 0) {
+//             let count = Math.min(Math.floor(changeD / unitValue), availableAmount / unitValue);
+//             let amount = count * unitValue;
+//             changeArray.push([currency, amount]);
+//             changeD -= amount;
+//             changeD = Math.round(changeD * 100) / 100; // Round to two decimal places to avoid floating point precision issues
+//         }
+//     }
 
-    if (changeD > 0) {
-        return { status: "INSUFFICIENT_FUNDS", change: [] };
-    }
+//     if (changeD > 0) {
+//         return { status: "INSUFFICIENT_FUNDS", change: [] };
+//     }
 
-    return { status: "OPEN", change: changeArray };
-}
+//     return { status: "OPEN", change: changeArray };
+// }
 
-function working(objs) {
+// function working(objs) {
 
-    changeDue.replaceChildren();
+//     changeDue.replaceChildren();
     
-    let ptag = document.createElement('p');
-    ptag.className = 'result-text';
-    ptag.appendChild(document.createTextNode(`${objs.status === "OPEN" ? "OPEN" : (objs.status === "INSUFFICIENT_FUNDS" ? "INSUFFICIENT_FUNDS" : "CLOSED")}, change: ${objs.change}`));
-    changeDue.appendChild(ptag);
-}
+//     let ptag = document.createElement('p');
+//     ptag.className = 'result-text';
+//     ptag.appendChild(document.createTextNode(`${objs.status === "OPEN" ? "OPEN" : (objs.status === "INSUFFICIENT_FUNDS" ? "INSUFFICIENT_FUNDS" : "CLOSED")}, change: ${objs.change}`));
+//     changeDue.appendChild(ptag);
+// }
 
-button.addEventListener('click', () => {
-    let val = checkCashRegister(price, input.value, cid);
-    if (typeof val === 'object')
-    {
-        working(val);
-    }
-    input.value = '';
-});
+// button.addEventListener('click', () => {
+//     let val = checkCashRegister(price, input.value, cid);
+//     if (typeof val === 'object')
+//     {
+//         working(val);
+//     }
+//     input.value = '';
+// });
 
-input.addEventListener('keydown', (e) => {
-    if (e.key === "Enter") {
-        let val = checkCashRegister(price, input.value, cid);
-        if (typeof val === 'object'){
-            working(val);
-        }
-        input.value = '';
-    }
-});
+// input.addEventListener('keydown', (e) => {
+//     if (e.key === "Enter") {
+//         let val = checkCashRegister(price, input.value, cid);
+//         if (typeof val === 'object'){
+//             working(val);
+//         }
+//         input.value = '';
+//     }
+// });
 
 // and this
 
